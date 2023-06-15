@@ -1,0 +1,6 @@
+#! /bin/sh
+
+read -r -p "input file [~/vids/input.mp4]: " input
+read -r -p "output file [~/vids/out.mp4]: " output
+
+ffmpeg -i $input -vf scale=3840:2160:flags=neighbor -c:v libx264 -preset slower -x264-params aq-mode=3 -crf 15 -pix_fmt yuv420p10le -c:a copy "$output"
